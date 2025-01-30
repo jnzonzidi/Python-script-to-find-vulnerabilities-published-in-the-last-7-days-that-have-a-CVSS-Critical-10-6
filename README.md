@@ -1,5 +1,5 @@
 # Python-script-to-find-vulnerabilities-published-in-the-last-7-days-that-have-a-CVSS-Critical-10-6
-Python script to find vulnerabilities published in the last 7 days that have a CVSS Critical score between 10 and 6
+Python script to find vulnerabilities published in the last 7 days that have a CVSS Critical score between 10 and 6.
 
 
 First, I  use The NVD (National Vulnerability Database) API. They have a REST API that allows querying vulnerabilities. I should check the latest documentation to confirm the endpoints and parameters.
