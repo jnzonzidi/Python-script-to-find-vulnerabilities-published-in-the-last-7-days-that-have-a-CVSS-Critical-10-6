@@ -2,11 +2,11 @@
 Python script to find vulnerabilities published in the last 7 days that have a CVSS Critical score between 10 and 6
 
 
-First, I need to figure out which API to use. The NVD (National Vulnerability Database) API is the standard for this. They have a REST API that allows querying vulnerabilities. I should check the latest documentation to confirm the endpoints and parameters.
+First, I  use The NVD (National Vulnerability Database) API. They have a REST API that allows querying vulnerabilities. I should check the latest documentation to confirm the endpoints and parameters.
 
-The user wants vulnerabilities from the last 7 days. So, the script needs to calculate the start and end dates. Using Python's datetime module, subtracting 7 days from today for the start date, and today's date as the end date.
+The script wants vulnerabilities from the last 7 days. So, the script needs to calculate the start and end dates. Using Python's datetime module, subtracting 7 days from today for the start date, and today's date as the end date.
 
-Next, the CVSS score. The user mentions CVSS Critical with a perfect score between 10 and 6. Wait, CVSS scores range from 0 to 10. Critical severity usually corresponds to 9.0-10.0. But the user wrote "between 10 and 6", which is a bit confusing. Maybe they meant Critical (9.0-10) and High (7.0-8.9)? Or perhaps they want scores from 6 to 10? The user clarified "Critical" but the CVSS score for Critical is 9.0-10.0. Maybe they intended to include High severity as well. I should note this ambiguity and adjust the parameters accordingly. The script can filter based on cvssV3Metrics or cvssV2Vector. The NVD API allows filtering by CVSS V3 severity. So using the 'cvssV3Severity' parameter set to 'CRITICAL' would fetch Critical vulnerabilities. But the user also mentions a score between 6 and 10. That suggests they might want High and Critical (7.0 and above). But the original question says "CVSS Critical with perfect score of CVSS between 10 and 6". Maybe they want Critical (9.0-10) but also scores down to 6.0? That seems conflicting. I should proceed with Critical (9.0-10) and note that the user might need to adjust the parameters if they want a different range.
+Next, the CVSS score. The script mentions CVSS Critical with a perfect score between 10 and 6. The script can filter based on cvssV3Metrics or cvssV2Vector.e.
 
 The API endpoint for the NVD is something like https://services.nvd.nist.gov/rest/json/cves/2.0. The parameters include 'cvssV3Severity=CRITICAL' and a publish date range. Let me check the API docs. The NVD API 2.0 allows parameters like `cvssV3Severity`, `pubStartDate`, `pubEndDate`. So constructing the URL with those parameters.
 
